@@ -1,6 +1,12 @@
 <?php
 $this->title = 'Car blog';
 ?>
+<div class="input-group mb-3">
+<input type="text" class="form-control" placeholder="Search Article" id="search-input" aria-label="Search Article" aria-describedby="basic-addon2">
+<div class="input-group-append">
+    <button class="btn btn-outline-secondary" id="search" type="button">Search</button>
+</div>
+</div>
 
 <div class="site-index">
     <div class="article">
@@ -22,16 +28,20 @@ $this->title = 'Car blog';
                         <input id="edit-comment-article-id" type="hidden" value="<?= $articles[0]->id ?>">
                         <img class="card-img-top" src="/uploads/<?= $articles[0]->img ?>" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title"> <?= $articles[0]->title ?></h5>
+                            <h5 class="card-title"> <?= $articles[0]->title ?>  <span class="badge badge-info">  <?= $articles[0]->created ?></</span></h5>
                             <p class="card-text"> <?= $articles[0]->text ?></p>
                         </div>
                     </div>
                 <?php } ?>
             </div>
             <div class="comment-body">
-                <?php foreach ($comments as $comment) { ?>
-                    <div class="comment-list-item" comment-id="<?= $comment->id ?>"><?= $comment->text ?></div>
-                <?php } ?>
+                <ul class="list-group">
+                    <?php foreach ($comments as $comment) { ?>
+                    <li class="list-group-item">
+                        <div class="comment-list-item" comment-id="<?= $comment->id ?>"><span class="badge badge-pill badge-warning">-></span><?= $comment->text ?></div>
+                    </li>
+                    <?php } ?>
+                </ul>
             </div>
             <div class="add-comment-container">
                 <h4>Add Comment</h4>

@@ -28,6 +28,17 @@ class ArticleController extends Controller
         $article = Article::findOne($id);
         return  $this->renderPartial('index',[ 'article' =>  $article]);
     }
+
+    public function actionSearch()
+    {
+        $request = Yii::$app->request;
+        $search = $request->get('search');
+        $articles = Article::find()->where(['like', 'text', $search ])->all();
+        return $this->renderPartial('search', ['articles' => $articles]);
+
+    }
+
+
     public function actionAdd() {
         return  $this->render('add');
     }

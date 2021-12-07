@@ -4,7 +4,7 @@
 
     <img class="card-img-top" src="/uploads/<?= $article->img ?>" alt="Card image cap">
     <div class="card-body">
-        <h5 class="card-title"> <?= $article->title ?></h5>
+        <h5 class="card-title"> <?= $article->title ?>  <span class="badge badge-info"> <?= $article->created ?></span></h5>
         <p class="card-text"> <?= $article->text ?></p>
     </div>
 </div>

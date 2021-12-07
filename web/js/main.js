@@ -1,13 +1,5 @@
 $(document).ready(function(){
-  $('.article-title-list > .at-list > div').on('click', function () {
-     const id = $(this).data('id');
-      $.get( "/article/?id=" + id, function( data ) {
-          $( ".article-body" ).html( data );
-      });
-      $.get( "/comment/?article_id=" + id, function( data ) {
-          $( ".comment-body" ).html( data );
-      });
-  })
+    reinitEventHendlers();
 
     $('#save-article').on('click', function () {
         var formData = new FormData();
@@ -44,5 +36,24 @@ $(document).ready(function(){
                 $('.comment-body').append(value);
             }
         });
-    })
+    });
+    $('#search').on('click', function () {
+        const search = $('#search-input').val();
+        $.get("/article/search?search=" + search, function( data ) {
+            $(".article-list").html(data);
+            reinitEventHendlers();
+        });
+    });
 })
+
+function reinitEventHendlers() {
+    $('.article-title-list > .at-list > div').on('click', function () {
+        const id = $(this).data('id');
+        $.get( "/article/?id=" + id, function( data ) {
+            $( ".article-body" ).html( data );
+        });
+        $.get( "/comment/?article_id=" + id, function( data ) {
+            $( ".comment-body" ).html( data );
+        });
+    });
+}
