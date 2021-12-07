@@ -38,11 +38,13 @@ AppAsset::register($this);
             'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
         ],
     ]);
-    ?>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Add article
-    </button>
-    <?php
+    if(!Yii::$app->user->isGuest) {
+        ?>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Add article
+        </button>
+        <?php
+    }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
